@@ -14,6 +14,8 @@ public class DisplayTypes {
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
+            int i;
+            int j;
             switch (choice){
                 case 1:
                     System.out.print("Nhập chiều cao ");
@@ -21,8 +23,8 @@ public class DisplayTypes {
                     System.out.print("Nhập chiều rông ");
                     int width = scanner.nextInt();
 
-                    for (int i = 1; i <= height ; i++) {
-                        for (int j = 1; j <= width ; j++) {
+                    for ( i = 1; i <= height ; i++) {
+                        for ( j = 1; j <= width ; j++) {
                             System.out.print("*");
                         }
                         System.out.println("");
@@ -32,8 +34,8 @@ public class DisplayTypes {
                     System.out.print("Nhập chiều dài ");
                     int longs = scanner.nextInt();
 
-                    for (int i = 1; i <= longs ; i++) {
-                        for (int j = 0; j < i ; j++) {
+                    for ( i = 1; i <= longs ; i++) {
+                        for ( j = 0; j < i ; j++) {
                             System.out.print("*");
                         }
                         System.out.println();
@@ -43,8 +45,8 @@ public class DisplayTypes {
                     System.out.print("Nhập chiều dài ");
                     int longs2 = scanner.nextInt();
 
-                    for (int i = longs2; i >=1 ; i--) {
-                        for (int j = 1; j <=i ; j++) {
+                    for ( i = longs2; i >=1 ; i--) {
+                        for ( j = 1; j <=i ; j++) {
                             System.out.print("*");
                         }
                         System.out.println();
