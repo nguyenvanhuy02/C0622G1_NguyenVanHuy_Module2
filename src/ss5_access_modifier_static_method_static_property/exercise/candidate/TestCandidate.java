@@ -54,6 +54,20 @@ public class TestCandidate {
 
         }
 
+    /**
+     * yêu cầu nhập lại nếu
+     * while (true) { // vòng lặng vô cực
+     *         try{
+     *             System.out.println("Nhập số: ");
+     *             yob = Integer.parseInt(sc.netxLine());
+     *             break;
+     *         } catch (Exception e ){
+     *             System.out.println("Nhập lại theo yêu cầu: ");
+     *         }
+     *     }
+     */
+   
+
 
 
 

@@ -92,4 +92,5 @@ public class Candidate {
                 ", english=" + english +
                 '}';
     }
+
 }

@@ -1,4 +1,4 @@
-package ss6_inheritance.exercise.class_circle_cylinder.controller;
+package ss6_inheritance.exercise.class_circle_cylinder.model;
 
 public class Circle {
     private double radius;
@@ -27,6 +27,7 @@ public class Circle {
     public void setColor(String color) {
         this.color = color;
     }
+
     public double getArea() {
         return radius * radius * Math.PI;
     }
