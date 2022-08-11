@@ -3,6 +3,9 @@ package ss6_inheritance.exercise.class_circle_cylinder.controller;
 import ss6_inheritance.exercise.class_circle_cylinder.model.Circle;
 import ss6_inheritance.exercise.class_circle_cylinder.model.Cylinder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
