@@ -8,20 +8,21 @@ public class CountMap {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Người dùng nhập: ");
-        String str = scanner.nextLine();
-        str.toLowerCase().replace(" ","");
+        String str = scanner.nextLine().toLowerCase();
 
-        Map<Character,Integer> stringMap = new TreeMap<>();
-        for (int i = 0; i < str.length() ; i++) {
-            if (stringMap.containsKey(str.charAt(i))){
-                Integer value = stringMap.get(str.charAt(i));
+        Map<String,Integer> stringMap = new TreeMap<>();
+        String[] strs = str.split(" ");
+
+        for (int i = 0; i < strs.length ; i++) {
+            if (stringMap.containsKey(strs[i])){
+                int value = stringMap.get(strs[i]);
                 value++;
-                stringMap.replace(str.charAt(i),value);
+                stringMap.replace(strs[i], value);
             }else {
-                stringMap.put(str.charAt(i),1);
+                stringMap.put(strs[i],1);
             }
         }
-        for(Map.Entry<Character,Integer> entry : stringMap.entrySet()){
+        for(Map.Entry<String,Integer> entry : stringMap.entrySet()){
             System.out.println(entry.getKey()+" "+entry.getValue());
         }
 
