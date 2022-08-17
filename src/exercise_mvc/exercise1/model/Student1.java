@@ -36,9 +36,8 @@ public class Student1 extends Person {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "nameClass='" + nameClass + '\'' +
-                ", point=" + point +
-                '}' + super.toString();
+        return super.toString() + "-" +
+                "Lớp: " + nameClass + "-" +
+                "Điểm: " + point ;
     }
 }

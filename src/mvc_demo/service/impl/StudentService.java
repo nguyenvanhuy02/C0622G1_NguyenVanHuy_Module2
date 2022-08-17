@@ -129,27 +129,25 @@ public class StudentService implements IStudentService {
     //Tìm thông tin học sinh bằng tên
     @Override
     public void nameStudent() {
-        Student student = this.findNameStudent();
-        if (student == null){
-            System.out.println("Không tìm thấy tên!");
-        }else {
-            System.out.println("Thông tin học sinh cần tìm tên là: ");
-            for (Student student1 : students){
-                System.out.println(student1);
-            }
-        }
-    }
-    //Tìm tên học sinh
-    public Student findNameStudent(){
         System.out.print("Mời bạn nhập tên muốn tìm: ");
         String name = scanner.nextLine();
         for (int i = 0; i < students.size() ; i++) {
             if (students.get(i).getName().contains(name)){
-                return students.get(i);
+                System.out.println(students.get(i));
             }
         }
-        return null;
     }
+    //Tìm tên học sinh
+//    public Student findNameStudent(){
+//        System.out.print("Mời bạn nhập tên muốn tìm: ");
+//        String name = scanner.nextLine();
+//        for (int i = 0; i < students.size() ; i++) {
+//            if (students.get(i).getName().contains(name)){
+//                return students.get(i);
+//            }
+//        }
+//        return null;
+//    }
     //Tìm id học sinh
     public Student findStudent(){
         System.out.print("Mời bạn nhập vào id cần chọn: ");

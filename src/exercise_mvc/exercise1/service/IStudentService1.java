@@ -7,4 +7,10 @@ public interface IStudentService1 {
     void deleStudent();
 
     void showListStudent();
+
+    void editStudent();
+
+    void idStundent();
+
+    void nameStudent();
 }

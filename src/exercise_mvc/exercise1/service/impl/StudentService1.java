@@ -44,6 +44,57 @@ public class StudentService1 implements IStudentService1 {
         }
     }
 
+    @Override
+    public void editStudent() {
+        Student1 student1 = this.findStudent();
+        if (student1 == null){
+            System.out.println("Không tìm thấy đối tượng bạn cần chỉnh sửa");
+        }else {
+            int findStudent = student1s.indexOf(student1);
+            Student1 editStudent = infoStudent();
+            System.out.println("Chỉnh sửa thông tin học sinh!");
+            student1s.get(findStudent).setId(editStudent.getId());
+            student1s.get(findStudent).setName(editStudent.getName());
+            student1s.get(findStudent).setDateOfBirth(editStudent.getDateOfBirth());
+            student1s.get(findStudent).setGender(editStudent.getGender());
+            student1s.get(findStudent).setNameClass(editStudent.getNameClass());
+            student1s.get(findStudent).setPoint(editStudent.getPoint());
+            System.out.println("Chỉnh sửa thành công!");
+        }
+    }
+
+    @Override
+    public void idStundent() {
+        Student1 student1 = this.findStudent();
+        if (student1 == null){
+            System.out.println("ID không tồn tại trong danh sách!");
+        }else {
+            System.out.println("Thông tin học sinh tìm bằng id !");
+            System.out.println(student1);
+        }
+    }
+
+    @Override
+    public void nameStudent() {
+        System.out.print("Mời bạn nhập tên cần tìm: ");
+        String name = scanner.nextLine();
+        for (int i = 0; i < student1s.size() ; i++) {
+            if (!student1s.get(i).getName().contains(name)){
+                System.out.println(student1s.get(i));
+            }
+        }
+    }
+
+//    public Student1 findNameStudent(){
+//        System.out.print("Mời bạn nhập tên cần tìm: ");
+//        String name = scanner.nextLine();
+//        for (int i = 0; i < student1s.size() ; i++) {
+//            if (student1s.get(i).getName().contains(name)){
+//                return student1s.get(i);
+//            }
+//        }
+//        return null;
+//    }
     public Student1 findStudent(){
         System.out.print("Mời bạn nhập vào id cần chọn: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -56,8 +107,21 @@ public class StudentService1 implements IStudentService1 {
     }
 
     public Student1 infoStudent(){
-        System.out.print("Mời bạn nhập id : ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id;
+        while (true){
+            boolean checkID = false;
+            System.out.print("Mời bạn nhập id : ");
+            id = Integer.parseInt(scanner.nextLine());
+            for (Student1 student1 : student1s){
+                if (student1.getId() == id){
+                    System.out.println("Id đã tồn tại vui lòng nhập lại!");
+                    checkID = true;
+                }
+            }
+            if (!checkID){
+                break;
+            }
+        }
 
         System.out.print("Mời bạn nhập tên: ");
         String name = scanner.nextLine();
