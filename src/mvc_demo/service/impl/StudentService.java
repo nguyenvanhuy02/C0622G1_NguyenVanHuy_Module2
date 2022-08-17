@@ -13,6 +13,7 @@ public class StudentService implements IStudentService {
     private static Scanner scanner = new Scanner(System.in);
     private List<Student> students = new ArrayList<>();
 
+    //Thêm học sinh
     @Override
     public void addStudent() {
         Student student = this.infoStudent();
@@ -20,14 +21,14 @@ public class StudentService implements IStudentService {
         System.out.println("Thêm học sinh thành công");
 
     }
-
+    //Xuất danh sách học sinh
     @Override
     public void disPlayAllStudent() {
         for (Student student : students){
             System.out.println(student);
         }
     }
-
+    //Xoá học sinh
     @Override
     public void removeStudent() {
         Student student = this.findStudent();
@@ -44,7 +45,7 @@ public class StudentService implements IStudentService {
             }
         }
     }
-
+    //Chỉnh sửa cập nhật thông tin học sinh
     @Override
     public void editStudent() {
         Student student = this.findStudent();
@@ -114,22 +115,70 @@ public class StudentService implements IStudentService {
             }
         }
     }
-
-
+    //Tìm thông tin học sinh bằng id
+    @Override
+    public void idStudent() {
+        Student student = this.findStudent();
+        if (student == null){
+            System.out.println("Không tìm thấy id!");
+        }else {
+            System.out.println("Thông tin học sinh cần tìm id là: ");
+            System.out.println(student);
+        }
+    }
+    //Tìm thông tin học sinh bằng tên
+    @Override
+    public void nameStudent() {
+        Student student = this.findNameStudent();
+        if (student == null){
+            System.out.println("Không tìm thấy tên!");
+        }else {
+            System.out.println("Thông tin học sinh cần tìm tên là: ");
+            for (Student student1 : students){
+                System.out.println(student1);
+            }
+        }
+    }
+    //Tìm tên học sinh
+    public Student findNameStudent(){
+        System.out.print("Mời bạn nhập tên muốn tìm: ");
+        String name = scanner.nextLine();
+        for (int i = 0; i < students.size() ; i++) {
+            if (students.get(i).getName().contains(name)){
+                return students.get(i);
+            }
+        }
+        return null;
+    }
+    //Tìm id học sinh
     public Student findStudent(){
         System.out.print("Mời bạn nhập vào id cần chọn: ");
         int id = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < students.size() ; i++) {
             if (students.get(i).getId() == id ){
                 return students.get(i);
+
             }
         }
         return null;
     }
-
+    //Nhập thông tin học sinh
     public Student infoStudent(){
-        System.out.print("Mời bạn nhập id : ");
-        int id = Integer.parseInt(scanner.nextLine());
+        int id;
+        while (true){
+            boolean checkID = false;
+            System.out.print("Mời bạn nhập id: ");
+            id = Integer.parseInt(scanner.nextLine());
+            for (Student student1 : students){
+                if (student1.getId() == id){
+                    System.out.println("Id đã tồn tại trong danh sách vui long nhập lại!");
+                    checkID = true;
+                }
+            }
+            if (!checkID){
+                break;
+            }
+        }
         System.out.print("Mời bạn nhập tên: ");
         String name = scanner.nextLine();
         System.out.print("Mời bạn nhập ngày sinh: ");

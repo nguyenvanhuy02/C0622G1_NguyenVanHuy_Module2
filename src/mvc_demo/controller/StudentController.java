@@ -10,6 +10,7 @@ public class StudentController {
 
     private static Scanner scanner = new Scanner(System.in);
 
+
     public void menuManagement() {
 
     while (true){
@@ -18,8 +19,10 @@ public class StudentController {
         System.out.println("1.Hiển thị danh sách học viên");
         System.out.println("2.Thêm học sinh mới");
         System.out.println("3.Cập nhật thông tin học sinh");
-        System.out.println("4.Xoá học sinh");
-        System.out.println("5.Kết thúc");
+        System.out.println("4.Tìm học sinh bằng id ");
+        System.out.println("5.Tìm học sinh bằng tên ");
+        System.out.println("6.Xoá học sinh");
+        System.out.println("7.Kết thúc");
         System.out.print("Mời bạn nhập chức năng 1->5: ");
 
         int choice = Integer.parseInt(scanner.nextLine());
@@ -34,9 +37,15 @@ public class StudentController {
                 studentService.editStudent();
                 break;
             case 4:
-                studentService.removeStudent();
+                studentService.idStudent();
                 break;
             case 5:
+                studentService.nameStudent();
+                break;
+            case 6:
+                studentService.removeStudent();
+                break;
+            case 7:
                 System.out.println("------Công việc bạn đã hoàn thành ! ok------");
                 return;
             default:
