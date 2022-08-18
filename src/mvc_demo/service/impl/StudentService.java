@@ -3,9 +3,7 @@ package mvc_demo.service.impl;
 import mvc_demo.model.Student;
 import mvc_demo.service.IStudentService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class StudentService implements IStudentService {
@@ -21,39 +19,42 @@ public class StudentService implements IStudentService {
         System.out.println("Thêm học sinh thành công");
 
     }
+
     //Xuất danh sách học sinh
     @Override
     public void disPlayAllStudent() {
-        for (Student student : students){
+        for (Student student : students) {
             System.out.println(student);
         }
     }
+
     //Xoá học sinh
     @Override
     public void removeStudent() {
         Student student = this.findStudent();
-        if (student == null){
+        if (student == null) {
             System.out.println("Không tìm thấy đối tượng để xoá");
-        }else {
+        } else {
             System.out.println("Bạn có chắc chắn muốn xoá đối tượng có id là " + student.getId() + "Không?");
             System.out.println("1.Có");
             System.out.println("2.Không");
             int choice = Integer.parseInt(scanner.nextLine());
-            if (choice == 1){
+            if (choice == 1) {
                 students.remove(student);
                 System.out.println("Xoá thành công ");
             }
         }
     }
+
     //Chỉnh sửa cập nhật thông tin học sinh
     @Override
     public void editStudent() {
         Student student = this.findStudent();
-        if (student == null){
+        if (student == null) {
             System.out.println("Không tìm thấy đối tượng để chỉnh sửa");
-        }else {
+        } else {
             int findStudents = students.indexOf(student);
-            while (true){
+            while (true) {
                 System.out.println("Chỉnh Sửa thông tin!");
                 System.out.println("1.Chỉnh sửa lại toàn bộ thông tin mới");
                 System.out.println("Hoặc chỉ chỉnh sửa 1 số thông tin dưới đây thôi!");
@@ -65,7 +66,7 @@ public class StudentService implements IStudentService {
                 System.out.println("7.Kết thúc");
                 System.out.print("Nhập thông tin từ 1-7: ");
                 int choice = Integer.parseInt(scanner.nextLine());
-                switch (choice){
+                switch (choice) {
                     case 1:
                         Student studentEdit = infoStudent();
                         System.out.println("Nhập thông tin cho sinh viên mới");
@@ -115,28 +116,50 @@ public class StudentService implements IStudentService {
             }
         }
     }
+
     //Tìm thông tin học sinh bằng id
     @Override
     public void idStudent() {
         Student student = this.findStudent();
-        if (student == null){
+        if (student == null) {
             System.out.println("Không tìm thấy id!");
-        }else {
+        } else {
             System.out.println("Thông tin học sinh cần tìm id là: ");
             System.out.println(student);
         }
     }
+
     //Tìm thông tin học sinh bằng tên
     @Override
     public void nameStudent() {
         System.out.print("Mời bạn nhập tên muốn tìm: ");
         String name = scanner.nextLine();
-        for (int i = 0; i < students.size() ; i++) {
-            if (students.get(i).getName().contains(name)){
+        int count = 0;
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getName().contains(name)) {
                 System.out.println(students.get(i));
+                count++;
             }
         }
+        if (count == 0) {
+            System.out.println("Không có tên trong danh sách!");
+        }
     }
+
+    @Override
+    public void sortNameStudent() {
+        for (int i = 0; i < students.size() - 1; i++) {
+            for (int j = 0; j < students.size() - 1 - i; j++) {
+                if (students.get(j).getName().compareTo(students.get(j + 1).getName())>0) {
+                    Student temp = students.get(j + 1);
+                    students.set(j + 1, students.get(j));
+                    students.set(j, temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công!");
+    }
+
     //Tìm tên học sinh
 //    public Student findNameStudent(){
 //        System.out.print("Mời bạn nhập tên muốn tìm: ");
@@ -149,31 +172,32 @@ public class StudentService implements IStudentService {
 //        return null;
 //    }
     //Tìm id học sinh
-    public Student findStudent(){
+    public Student findStudent() {
         System.out.print("Mời bạn nhập vào id cần chọn: ");
         int id = Integer.parseInt(scanner.nextLine());
-        for (int i = 0; i < students.size() ; i++) {
-            if (students.get(i).getId() == id ){
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).getId() == id) {
                 return students.get(i);
 
             }
         }
         return null;
     }
+
     //Nhập thông tin học sinh
-    public Student infoStudent(){
+    public Student infoStudent() {
         int id;
-        while (true){
+        while (true) {
             boolean checkID = false;
             System.out.print("Mời bạn nhập id: ");
             id = Integer.parseInt(scanner.nextLine());
-            for (Student student1 : students){
-                if (student1.getId() == id){
+            for (Student student1 : students) {
+                if (student1.getId() == id) {
                     System.out.println("Id đã tồn tại trong danh sách vui long nhập lại!");
                     checkID = true;
                 }
             }
-            if (!checkID){
+            if (!checkID) {
                 break;
             }
         }
@@ -186,7 +210,7 @@ public class StudentService implements IStudentService {
         System.out.print("Mời bạn nhập tên lớp: ");
         String nameClass = scanner.nextLine();
 
-        Student student = new Student(id,name,dateOfBirth,point,nameClass);
+        Student student = new Student(id, name, dateOfBirth, point, nameClass);
         return student;
 
     }

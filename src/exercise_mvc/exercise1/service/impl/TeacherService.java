@@ -74,12 +74,17 @@ public class TeacherService implements ITeacherService {
 
     @Override
     public void nameTeacherService() {
-        System.out.println("Mời bạn nhập vào tên giảng viên: ");
+        System.out.print("Mời bạn nhập vào tên giảng viên: ");
         String name = scanner.nextLine();
+        int count = 0;
         for (int i = 0; i < teachers.size(); i++) {
             if (teachers.get(i).getName().contains(name)) {
                 System.out.println(teachers.get(i));
+                count++;
             }
+        }
+        if (count==0){
+            System.out.println("Không có tên trong danh sách!");
         }
     }
 
@@ -109,7 +114,7 @@ public class TeacherService implements ITeacherService {
         int id;
         while (true) {
             boolean checkID = false;
-            System.out.println("Mời bạn nhập id: ");
+            System.out.print("Mời bạn nhập id: ");
             id = Integer.parseInt(scanner.nextLine());
             for (Teacher teacher : teachers) {
                 if (teacher.getId() == id) {

@@ -13,4 +13,6 @@ public interface IStudentService1 {
     void idStundent();
 
     void nameStudent();
+
+    void sortNameStudent();
 }

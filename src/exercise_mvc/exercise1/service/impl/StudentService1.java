@@ -2,7 +2,7 @@ package exercise_mvc.exercise1.service.impl;
 
 import exercise_mvc.exercise1.model.Student1;
 import exercise_mvc.exercise1.service.IStudentService1;
-
+import mvc_demo.model.Student;
 
 
 import java.util.ArrayList;
@@ -78,14 +78,33 @@ public class StudentService1 implements IStudentService1 {
     public void nameStudent() {
         System.out.print("Mời bạn nhập tên cần tìm: ");
         String name = scanner.nextLine();
+        int count = 0;
         for (int i = 0; i < student1s.size() ; i++) {
             if (!student1s.get(i).getName().contains(name)){
                 System.out.println(student1s.get(i));
+                count++;
             }
+        }
+        if (count == 0){
+            System.out.println("Không có tên trong danh sách!");
         }
     }
 
-//    public Student1 findNameStudent(){
+    @Override
+    public void sortNameStudent() {
+        for (int i = 0; i < student1s.size() - 1; i++) {
+            for (int j = 0; j < student1s.size() - 1 - i; j++) {
+                if (student1s.get(j).getName().compareTo(student1s.get(j + 1).getName())>0) {
+                    Student1 temp = student1s.get(j + 1);
+                    student1s.set(j + 1, student1s.get(j));
+                    student1s.set(j, temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công!");
+    }
+
+    //    public Student1 findNameStudent(){
 //        System.out.print("Mời bạn nhập tên cần tìm: ");
 //        String name = scanner.nextLine();
 //        for (int i = 0; i < student1s.size() ; i++) {
