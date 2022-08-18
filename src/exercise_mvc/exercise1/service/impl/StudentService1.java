@@ -92,6 +92,10 @@ public class StudentService1 implements IStudentService1 {
 
     @Override
     public void sortNameStudent() {
+        if (student1s.size() <= 0){
+            System.out.println("Hiện không có danh sách để sắp xếp!");
+            return;
+        }
         for (int i = 0; i < student1s.size() - 1; i++) {
             for (int j = 0; j < student1s.size() - 1 - i; j++) {
                 if (student1s.get(j).getName().compareTo(student1s.get(j + 1).getName())>0) {

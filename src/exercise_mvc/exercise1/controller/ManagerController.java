@@ -47,7 +47,7 @@ public class ManagerController {
                                 break;
                             case 3:
                                 comeBack: while (true){
-                                    System.out.println(
+                                    System.out.println("----------Tìm Kiếm-----------\n" +
                                             "1.Tìm kiếm bằng tên.\n" +
                                             "2.Tìm kiếm bằng id.\n" +
                                             "3.Quay lại.");
@@ -104,6 +104,7 @@ public class ManagerController {
                             case 3:
                                 comeBack: while (true){
                                     System.out.println(
+                                            "-----------------Tìm kiếm--------------\n" +
                                             "1.Tìm kiếm bằng tên.\n" +
                                             "2.Tìm kiếm bằng id.\n" +
                                              "3.Quay lại.");
@@ -127,7 +128,7 @@ public class ManagerController {
                                 break;
                             case 5:
                              comeBack: while (true){
-                                    System.out.println("" +
+                                    System.out.println("----------Sắp xếp------------\n" +
                                             "1.Sắp xếp theo tên.\n" +
                                             "2.Sắp xếp theo điểm.\n" +
                                             "3.Quay lại");
