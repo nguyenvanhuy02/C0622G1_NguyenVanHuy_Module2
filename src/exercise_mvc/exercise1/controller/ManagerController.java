@@ -15,14 +15,19 @@ public class ManagerController {
 
     public void manuManager() {
         while (true) {
-            System.out.println("-----------------------------------");
-            System.out.println("Chào mừng bạn đến với danh sách quản lí học sinh và giảng viên");
-            System.out.println("1.Giảng viên");
-            System.out.println("2.Học sinh");
-            System.out.println("3.Thoát");
-            System.out.print("Chọn chức (1->3): ");
-            int choice = Integer.parseInt(scanner.nextLine());
+            int choice = 0;
+            try {
+                System.out.println("-----------------------------------");
+                System.out.println("Chào mừng bạn đến với danh sách quản lí học sinh và giảng viên");
+                System.out.println("1.Giảng viên");
+                System.out.println("2.Học sinh");
+                System.out.println("3.Thoát");
+                System.out.print("Chọn chức (1->3): ");
+                choice = Integer.parseInt(scanner.nextLine());
 
+            } catch (NumberFormatException e) {
+                System.out.println("Chắc năng bạn chọn không hợp lệ , vui lòng bạn chọn lại!");
+            }
             switch (choice) {
                 case 1:
                     boolean isLoop = true;
@@ -33,10 +38,11 @@ public class ManagerController {
                         System.out.println("2.Xoá giảng viên");
                         System.out.println("3.Tìm giảng viên");
                         System.out.println("4.Chỉnh sửa thông tin giảng viên");
-                        System.out.println("5.Danh sách giảng viên");
-                        System.out.println("6.Quay lại");
-                        System.out.print("Chọn 1->6: ");
-                         choices = Integer.parseInt(scanner.nextLine());
+                        System.out.println("5.Sắp xếp");
+                        System.out.println("6.Danh sách giảng viên");
+                        System.out.println("7.Quay lại");
+                        System.out.print("Chọn 1->7: ");
+                        choices = Integer.parseInt(scanner.nextLine());
                         switch (choices) {
                             case 1:
                                 System.out.println("Nhập thông tin giảng viên:");
@@ -46,13 +52,14 @@ public class ManagerController {
                                 teacherService.deleTeacherService();
                                 break;
                             case 3:
-                                comeBack: while (true){
+                                comeBack:
+                                while (true) {
                                     System.out.println("----------Tìm Kiếm-----------\n" +
                                             "1.Tìm kiếm bằng tên.\n" +
                                             "2.Tìm kiếm bằng id.\n" +
                                             "3.Quay lại.");
                                     choices = Integer.parseInt(scanner.nextLine());
-                                    switch (choices){
+                                    switch (choices) {
                                         case 1:
                                             teacherService.nameTeacherService();
                                             break;
@@ -66,13 +73,36 @@ public class ManagerController {
                                     }
                                 }
                                 break;
-                             case 4:
+                            case 4:
                                 teacherService.editTeacherService();
                                 break;
                             case 5:
-                                teacherService.showListTeacher();
+                                comeBank:
+                                while (true) {
+                                    System.out.println(
+                                            "-----------------Tìm kiếm--------------\n" +
+                                                    "1.Tìm kiếm bằng tên.\n" +
+                                                    "2.Tìm kiếm bằng id.\n" +
+                                                    "3.Quay lại.");
+                                    choice = Integer.parseInt(scanner.nextLine());
+                                    switch (choice) {
+                                        case 1:
+                                            teacherService.sortNameTeacher();
+                                            break;
+                                        case 2:
+                                            teacherService.sortIDTeacher();
+                                            break;
+                                        case 3:
+                                            break comeBank;
+                                        default:
+                                            System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
+                                    }
+                                }
                                 break;
                             case 6:
+                                teacherService.showListTeacher();
+                                break;
+                            case 7:
                                 isLoop = false;
                                 break;
                             default:
@@ -102,14 +132,15 @@ public class ManagerController {
                                 studentService1.deleStudent();
                                 break;
                             case 3:
-                                comeBack: while (true){
+                                comeBack:
+                                while (true) {
                                     System.out.println(
                                             "-----------------Tìm kiếm--------------\n" +
-                                            "1.Tìm kiếm bằng tên.\n" +
-                                            "2.Tìm kiếm bằng id.\n" +
-                                             "3.Quay lại.");
+                                                    "1.Tìm kiếm bằng tên.\n" +
+                                                    "2.Tìm kiếm bằng id.\n" +
+                                                    "3.Quay lại.");
                                     choices = Integer.parseInt(scanner.nextLine());
-                                    switch (choices){
+                                    switch (choices) {
                                         case 1:
                                             studentService1.nameStudent();
                                             break;
@@ -127,17 +158,19 @@ public class ManagerController {
                                 studentService1.editStudent();
                                 break;
                             case 5:
-                             comeBack: while (true){
+                                comeBack:
+                                while (true) {
                                     System.out.println("----------Sắp xếp------------\n" +
                                             "1.Sắp xếp theo tên.\n" +
                                             "2.Sắp xếp theo điểm.\n" +
                                             "3.Quay lại");
                                     choice = Integer.parseInt(scanner.nextLine());
-                                    switch (choice){
+                                    switch (choice) {
                                         case 1:
                                             studentService1.sortNameStudent();
                                             break;
                                         case 2:
+                                            studentService1.sortPointStudent();
                                             break;
                                         case 3:
                                             break comeBack;

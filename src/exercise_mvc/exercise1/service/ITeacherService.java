@@ -12,4 +12,8 @@ public interface ITeacherService {
     void idTeacherService();
 
     void nameTeacherService();
+
+    void sortNameTeacher();
+
+    void sortIDTeacher();
 }

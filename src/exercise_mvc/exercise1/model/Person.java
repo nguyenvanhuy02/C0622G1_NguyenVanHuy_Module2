@@ -1,15 +1,18 @@
 package exercise_mvc.exercise1.model;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
+
 public class Person {
     private int id;
     private String name;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String gender;
 
     public Person() {
     }
 
-    public Person(int id, String name, String dateOfBirth, String gender) {
+    public Person(int id, String name, Date dateOfBirth, String gender) {
         this.id = id;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -32,12 +35,12 @@ public class Person {
         this.name = name;
     }
 
-    public String getDateOfBirth() {
-        return dateOfBirth;
+    public Data getDateOfBirth() {
+        return (Data) dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(Data dateOfBirth) {
+        this.dateOfBirth = (Date) dateOfBirth;
     }
 
     public String getGender() {

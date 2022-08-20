@@ -2,12 +2,15 @@ package exercise_mvc.exercise1.service.impl;
 
 import exercise_mvc.exercise1.model.Student1;
 import exercise_mvc.exercise1.service.IStudentService1;
-import mvc_demo.model.Student;
+import exercise_mvc.exercise1.service.exception.CheckPointException;
+import exercise_mvc.exercise1.service.exception.GenderException;
+import exercise_mvc.exercise1.service.exception.IDException;
+import exercise_mvc.exercise1.service.exception.NameException;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class StudentService1 implements IStudentService1 {
@@ -96,9 +99,12 @@ public class StudentService1 implements IStudentService1 {
             System.out.println("Hiện không có danh sách để sắp xếp!");
             return;
         }
-        for (int i = 0; i < student1s.size() - 1; i++) {
+        boolean isSwap = true;
+        for (int i = 0; i < student1s.size() - 1 && isSwap; i++) {
+            isSwap = false;
             for (int j = 0; j < student1s.size() - 1 - i; j++) {
                 if (student1s.get(j).getName().compareTo(student1s.get(j + 1).getName())>0) {
+                    isSwap = true;
                     Student1 temp = student1s.get(j + 1);
                     student1s.set(j + 1, student1s.get(j));
                     student1s.set(j, temp);
@@ -108,16 +114,27 @@ public class StudentService1 implements IStudentService1 {
         System.out.println("Sắp xếp thành công!");
     }
 
-    //    public Student1 findNameStudent(){
-//        System.out.print("Mời bạn nhập tên cần tìm: ");
-//        String name = scanner.nextLine();
-//        for (int i = 0; i < student1s.size() ; i++) {
-//            if (student1s.get(i).getName().contains(name)){
-//                return student1s.get(i);
-//            }
-//        }
-//        return null;
-//    }
+    @Override
+    public void sortPointStudent() {
+        if (student1s.size() <= 0){
+            System.out.println("Hiện không có danh sách để sắp xếp!");
+            return;
+        }
+        boolean isSwap = true;
+        for (int i = 0; i < student1s.size() - 1 && isSwap; i++) {
+            isSwap = false;
+            for (int j = 0; j < student1s.size() - 1 - i; j++) {
+                if (student1s.get(j).getPoint() > (student1s.get(j + 1).getPoint())) {
+                    isSwap = true;
+                    Student1 temp = student1s.get(j + 1);
+                    student1s.set(j + 1, student1s.get(j));
+                    student1s.set(j, temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công!");
+
+    }
     public Student1 findStudent(){
         System.out.print("Mời bạn nhập vào id cần chọn: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -133,8 +150,20 @@ public class StudentService1 implements IStudentService1 {
         int id;
         while (true){
             boolean checkID = false;
-            System.out.print("Mời bạn nhập id : ");
-            id = Integer.parseInt(scanner.nextLine());
+            while (true){
+                try {
+                    System.out.print("Mời bạn nhập id : ");
+                    id = Integer.parseInt(scanner.nextLine());
+                    if (id < 0){
+                        throw new IDException("ID không hợp lệ phải >0,vui lòng bạn nhập lại!");
+                    }
+                    break;
+                }catch (NumberFormatException e){
+                    System.out.println("id không hợp lệ, vui lòng bạn nhâp lai!");
+                }catch (IDException e){
+                    System.out.println(e.getMessage());
+                }
+            }
             for (Student1 student1 : student1s){
                 if (student1.getId() == id){
                     System.out.println("Id đã tồn tại vui lòng nhập lại!");
@@ -146,23 +175,69 @@ public class StudentService1 implements IStudentService1 {
             }
         }
 
-        System.out.print("Mời bạn nhập tên: ");
-        String name = scanner.nextLine();
+        String name;
+        while (true){
+            try {
+                System.out.print("Mời bạn nhập tên: ");
+                name = scanner.nextLine();
+                if (name.length() == 0){
+                    throw new NameException("Họ tên không được để trống!");
+                }else if (name.matches("\\W+")){
+                    throw new NameException("Họ tên chỉ chứa các chữ cái!");
+                }
+                break;
+            }catch (NameException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
-        System.out.print("Mời bạn nhập ngày sinh: ");
-        String dateOfBirth = scanner.nextLine();
+        Date dataOfBirth;
+        while (true){
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                System.out.print("Mời bạn nhập ngày sinh(dd/MM/yyy): ");
+                dataOfBirth = dateFormat.parse(scanner.nextLine());
+                break;
+            } catch (ParseException e) {
+                System.out.println("Ngày sinh bạn nhập không hợp lệ");
+            }
+        }
 
-        System.out.print("Mời bạn nhâpk giới tính: ");
-        String gender = scanner.nextLine();
+        String gender;
+        while (true){
+            try {
+                System.out.print("Mời bạn nhâpk giới tính (Nam/Nữ): ");
+                gender = scanner.nextLine();
+                if (!gender.matches("Nam") && !gender.matches("Nữ")){
+                    throw new GenderException("Bạn nhập giới tính không hợp lệ vui lòng nhập lại!");
+                }
+                break;
+            }catch (GenderException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         System.out.print("Mời bạn nhập tên lớp: ");
         String nameClass = scanner.nextLine();
 
+        double point;
+        while (true){
+            try {
+                System.out.print("Mời bạn nhập điểm: ");
+                point = Double.parseDouble(scanner.nextLine());
+                if (point < 0 || point > 1000){
+                    throw new CheckPointException("Điểm bạn không hợp lệ phải lớn hơn 0 và nhỏ hơn 1000, vui lòng bạn nhập lại!");
+                }
+                break;
+            }catch (NumberFormatException e){
+                System.out.println("Điểm bạn nhập không hợp lệ vui lòng nhập lại!");
+            }catch (CheckPointException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
-        System.out.print("Mời bạn nhập điểm: ");
-        double point = Double.parseDouble(scanner.nextLine());
 
-        Student1 student1 = new Student1(id,name,dateOfBirth,gender,nameClass,point);
+        Student1 student1 = new Student1(id,name,dataOfBirth,gender,nameClass,point);
         return student1;
 
     }

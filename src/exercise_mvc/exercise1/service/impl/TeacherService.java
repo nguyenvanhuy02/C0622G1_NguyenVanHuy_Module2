@@ -3,8 +3,14 @@ package exercise_mvc.exercise1.service.impl;
 import exercise_mvc.exercise1.model.Student1;
 import exercise_mvc.exercise1.model.Teacher;
 import exercise_mvc.exercise1.service.ITeacherService;
+import exercise_mvc.exercise1.service.exception.GenderException;
+import exercise_mvc.exercise1.service.exception.NameException;
 
+import javax.xml.crypto.Data;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -88,16 +94,48 @@ public class TeacherService implements ITeacherService {
         }
     }
 
-//    public Teacher findNameTeacher() {
-//        System.out.println("Mời bạn nhập vào tên giảng viên: ");
-//        String name = scanner.nextLine();
-//        for (int i = 0; i < teachers.size(); i++) {
-//            if (teachers.get(i).getName().contains(name)) {
-//                return teachers.get(i);
-//            }
-//        }
-//        return null;
-//    }
+    @Override
+    public void sortNameTeacher() {
+        if (teachers.size() <= 0){
+            System.out.println("Hiện không có danh sách để sắp xếp!");
+            return;
+        }
+        boolean isWap = true;
+        for (int i = 0; i < teachers.size() -1 && isWap ; i++) {
+            isWap = false;
+            for (int j = 0; j < teachers.size() - 1 -i  ; j++) {
+                if (teachers.get(j).getName().compareTo(teachers.get(j+1).getName()) > 0){
+                    isWap = true;
+                    Teacher temp =  teachers.get(j + 1);
+                    teachers.set(j+1,teachers.get(i));
+                    teachers.set(j,temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công!");
+    }
+
+    @Override
+    public void sortIDTeacher() {
+        if (teachers.size() <= 0){
+            System.out.println("Hiện không có danh sách để sắp xếp!");
+            return;
+        }
+        boolean isSwap = true;
+        for (int i = 0; i < teachers.size() -1 && isSwap ; i++) {
+            isSwap = false;
+            for (int j = 0; j < teachers.size() - 1 -i  ; j++) {
+                if (teachers.get(j).getId()>(teachers.get(j+1).getId())){
+                    isSwap = true;
+                    Teacher temp =  teachers.get(j + 1);
+                    teachers.set(j+1,teachers.get(i));
+                    teachers.set(j,temp);
+                }
+            }
+        }
+        System.out.println("Sắp xếp thành công!");
+    }
+
 
     public Teacher findTeacher() {
         System.out.print("Mời bạn nhập vào id cần chọn: ");
@@ -127,19 +165,52 @@ public class TeacherService implements ITeacherService {
             }
         }
 
-        System.out.print("Mời bạn nhập tên: ");
-        String name = scanner.nextLine();
+        String name;
+        while (true){
+            try {
+                System.out.print("Mời bạn nhập tên: ");
+                name = scanner.nextLine();
+                if (name.length() == 0){
+                    throw new NameException("Họ tên không được để trống!");
+                }else if (name.matches("\\W+")){
+                    throw new NameException("Họ tên chỉ chứa các chữ cái!");
+                }
+                break;
+            }catch (NameException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
-        System.out.print("Mời bạn nhập ngày sinh: ");
-        String dateOfBirth = scanner.nextLine();
+        Date dataOfBirth;
+        while (true){
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                System.out.print("Mời bạn nhập ngày sinh: ");
+                dataOfBirth = dateFormat.parse(scanner.nextLine());
+                break;
+            } catch (ParseException e) {
+                System.out.println("Ngày sinh bạn nhập không hợp lệ");
+            }
+        }
 
-        System.out.print("Mời bạn nhập giới tính: ");
-        String gender = scanner.nextLine();
+        String gender;
+        while (true){
+            try {
+                System.out.print("Mời bạn nhâpk giới tính (Nam/Nữ): ");
+                gender = scanner.nextLine();
+                if (!gender.matches("Nam") && !gender.matches("Nữ")){
+                    throw new GenderException("Bạn nhập giới tính không hợp lệ vui lòng nhập lại!");
+                }
+                break;
+            }catch (GenderException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         System.out.print("Mời bạn nhập chuyên môn: ");
         String specialize = scanner.nextLine();
 
-        Teacher teacher = new Teacher(id, name, dateOfBirth, gender, specialize);
+        Teacher teacher = new Teacher(id, name, (Data) dataOfBirth, gender, specialize);
         return teacher;
 
 
