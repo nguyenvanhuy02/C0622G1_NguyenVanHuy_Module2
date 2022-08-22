@@ -1,11 +1,14 @@
 package ss16_io_text_file.exercise.read_file_csv.controller;
 
-import java.util.List;
-import java.util.Scanner;
+
+import ss16_io_text_file.exercise.read_file_csv.util.ReadeListOfCountries;
+
+import java.io.IOException;
+
 
 public class FileCSVController {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+     ReadeListOfCountries.readFile("src\\ss16_io_text_file\\exercise\\read_file_csv\\data\\ListOfCountries.csv");
 }
 }
 
