@@ -15,8 +15,8 @@ public class Student1 extends Person {
         this.point = point;
     }
 
-    public Student1(int id, String name, Data dateOfBirth, String gender, String nameClass, double point) {
-        super(id, name, (Date) dateOfBirth, gender);
+    public Student1(int id, String name, String dateOfBirth, String gender, String nameClass, double point) {
+        super(id, name, dateOfBirth, gender);
         this.nameClass = nameClass;
         this.point = point;
     }
