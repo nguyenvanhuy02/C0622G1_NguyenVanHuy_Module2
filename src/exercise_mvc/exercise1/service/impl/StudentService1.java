@@ -6,8 +6,11 @@ import exercise_mvc.exercise1.service.exception.CheckPointException;
 import exercise_mvc.exercise1.service.exception.GenderException;
 import exercise_mvc.exercise1.service.exception.IDException;
 import exercise_mvc.exercise1.service.exception.NameException;
+import exercise_mvc.exercise1.service.read_write.readFile;
+import exercise_mvc.exercise1.service.read_write.writeFile;
 
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -16,11 +19,14 @@ import java.util.*;
 public class StudentService1 implements IStudentService1 {
     private static Scanner scanner = new Scanner(System.in);
     private List<Student1> student1s = new ArrayList<>();
+    private static final String PATH_FILE = "src\\exercise_mvc\\exercise1\\data\\filestudent.txt";
     @Override
-    public void insetStudent() {
+    public void insetStudent() throws IOException {
+        student1s = readFile.readStudentFile(PATH_FILE);
         Student1 student = this.infoStudent();
         student1s.add(student);
         System.out.println("Thêm học sinh thành công");
+        writeFile.wriStudentFile(PATH_FILE,student1s);
     }
 
     @Override
@@ -41,7 +47,8 @@ public class StudentService1 implements IStudentService1 {
     }
 
     @Override
-    public void showListStudent() {
+    public void showListStudent() throws IOException {
+        student1s = readFile.readStudentFile(PATH_FILE);
         for (Student1 student1 : student1s){
             System.out.println(student1);
         }
@@ -191,16 +198,12 @@ public class StudentService1 implements IStudentService1 {
             }
         }
 
-        Date dataOfBirth;
+        String dataOfBirth;
         while (true){
-            try {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                System.out.print("Mời bạn nhập ngày sinh(dd/MM/yyy): ");
-                dataOfBirth = dateFormat.parse(scanner.nextLine());
-                break;
-            } catch (ParseException e) {
-                System.out.println("Ngày sinh bạn nhập không hợp lệ");
-            }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            System.out.print("Mời bạn nhập ngày sinh(dd/MM/yyy): ");
+            dataOfBirth = scanner.nextLine();
+            break;
         }
 
         String gender;

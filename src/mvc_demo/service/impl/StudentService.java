@@ -2,7 +2,10 @@ package mvc_demo.service.impl;
 
 import mvc_demo.model.Student;
 import mvc_demo.service.IStudentService;
+import mvc_demo.service.read_end_write.readFileStudent;
+import mvc_demo.service.read_end_write.wirteFileStudent;
 
+import java.io.IOException;
 import java.util.*;
 
 
@@ -10,14 +13,16 @@ public class StudentService implements IStudentService {
 
     private static Scanner scanner = new Scanner(System.in);
     private List<Student> students = new ArrayList<>();
+    private static final String PATH_FILE = "src\\mvc_demo\\data\\students.txt";
 
     //Thêm học sinh
     @Override
-    public void addStudent() {
+    public void addStudent() throws IOException {
+        students = readFileStudent.readStudentFile(PATH_FILE);
         Student student = this.infoStudent();
         students.add(student);
         System.out.println("Thêm học sinh thành công");
-
+        wirteFileStudent.wirteFileStudent(PATH_FILE,students);
     }
 
     //Xuất danh sách học sinh

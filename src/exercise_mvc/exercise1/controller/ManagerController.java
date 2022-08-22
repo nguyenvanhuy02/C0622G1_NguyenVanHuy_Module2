@@ -38,6 +38,7 @@ public class ManagerController {
                     break;
                 case 2:
                     studen.studentController();
+                    break;
                 case 3:
                     System.out.println("---Hoàn thành công việc----");
                     return;

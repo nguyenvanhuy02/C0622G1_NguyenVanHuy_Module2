@@ -40,10 +40,8 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                '}';
+        return "ID: " + id + "-" +
+                "Học Và tên: " + name + "-" +
+                "Ngày Tháng Năm: " + dateOfBirth;
     }
 }

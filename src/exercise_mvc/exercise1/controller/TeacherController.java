@@ -34,23 +34,29 @@ public class TeacherController {
                     case 3:
                         comeBack:
                         while (true) {
-                            System.out.println("----------Tìm Kiếm-----------\n" +
-                                    "1.Tìm kiếm bằng tên.\n" +
-                                    "2.Tìm kiếm bằng id.\n" +
-                                    "3.Quay lại.");
-                            choices = Integer.parseInt(scanner.nextLine());
-                            switch (choices) {
-                                case 1:
-                                    teacherService.nameTeacherService();
-                                    break;
-                                case 2:
-                                    teacherService.idTeacherService();
-                                    break;
-                                case 3:
-                                    break comeBack;
-                                default:
-                                    System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
+                            try {
+                                System.out.println("----------Tìm Kiếm-----------\n" +
+                                        "1.Tìm kiếm bằng tên.\n" +
+                                        "2.Tìm kiếm bằng id.\n" +
+                                        "3.Quay lại.");
+                                System.out.print("Chọn(1->3): ");
+                                choices = Integer.parseInt(scanner.nextLine());
+                                switch (choices) {
+                                    case 1:
+                                        teacherService.nameTeacherService();
+                                        break;
+                                    case 2:
+                                        teacherService.idTeacherService();
+                                        break;
+                                    case 3:
+                                        break comeBack;
+                                    default:
+                                        System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
+                                }
+                            }catch (NumberFormatException e){
+                                System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
                             }
+
                         }
                         break;
                     case 4:
@@ -59,24 +65,29 @@ public class TeacherController {
                     case 5:
                         comeBank:
                         while (true) {
-                            System.out.println(
-                                    "-----------------Tìm kiếm--------------\n" +
-                                            "1.Tìm kiếm bằng tên.\n" +
-                                            "2.Tìm kiếm bằng id.\n" +
-                                            "3.Quay lại.");
-                            int choice;
-                            choice = Integer.parseInt(scanner.nextLine());
-                            switch (choice) {
-                                case 1:
-                                    teacherService.sortNameTeacher();
-                                    break;
-                                case 2:
-                                    teacherService.sortIDTeacher();
-                                    break;
-                                case 3:
-                                    break comeBank;
-                                default:
-                                    System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
+                            try {
+                                System.out.println(
+                                        "-----------------Tìm kiếm--------------\n" +
+                                                "1.Tìm kiếm bằng tên.\n" +
+                                                "2.Tìm kiếm bằng id.\n" +
+                                                "3.Quay lại.");
+                                int choice;
+                                System.out.print("Chọn (1->3): ");
+                                choice = Integer.parseInt(scanner.nextLine());
+                                switch (choice) {
+                                    case 1:
+                                        teacherService.sortNameTeacher();
+                                        break;
+                                    case 2:
+                                        teacherService.sortIDTeacher();
+                                        break;
+                                    case 3:
+                                        break comeBank;
+                                    default:
+                                        System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
+                                }
+                            }catch (NumberFormatException e){
+                                System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
                             }
                         }
                         break;

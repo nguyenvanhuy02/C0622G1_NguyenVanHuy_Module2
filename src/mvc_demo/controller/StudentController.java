@@ -3,6 +3,7 @@ package mvc_demo.controller;
 import mvc_demo.service.IStudentService;
 import mvc_demo.service.impl.StudentService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class StudentController {
@@ -11,7 +12,7 @@ public class StudentController {
     private static Scanner scanner = new Scanner(System.in);
 
 
-    public void menuManagement() {
+    public void menuManagement() throws IOException {
 
     while (true){
         System.out.println("---------------------------");

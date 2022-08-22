@@ -1,9 +1,11 @@
 package mvc_demo.service;
 
-public interface IStudentService {
-    void addStudent();
+import java.io.IOException;
 
-    void disPlayAllStudent();
+public interface IStudentService {
+    void addStudent() throws IOException;
+
+    void disPlayAllStudent() throws IOException;
 
     void removeStudent();
 

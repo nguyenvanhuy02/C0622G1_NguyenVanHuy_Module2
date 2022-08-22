@@ -21,8 +21,7 @@ public class Student1 extends Person {
         this.point = point;
     }
 
-    public Student1(int id, String name, Date dataOfBirth, String gender, String nameClass, double point) {
-    }
+
 
     public String getNameClass() {
         return nameClass;
