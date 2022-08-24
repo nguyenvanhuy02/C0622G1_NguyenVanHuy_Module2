@@ -1,9 +1,7 @@
 package exercise_mvc.exercise1.controller;
 
 import exercise_mvc.exercise1.service.IStudentService1;
-import exercise_mvc.exercise1.service.ITeacherService;
 import exercise_mvc.exercise1.service.impl.StudentService1;
-import exercise_mvc.exercise1.service.impl.TeacherService;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,7 +9,7 @@ import java.util.Scanner;
 public class StudentController {
     private static final Scanner scanner = new Scanner(System.in);
     private static final IStudentService1 studentService1 = new StudentService1();
-    public static void studentController(){
+    public static void studentController() throws IOException {
         boolean isloop1 = true;
         int choice1;
         while (isloop1) {
@@ -59,7 +57,7 @@ public class StudentController {
                                         System.out.println("Lựa chọn của bạn không hợp lệ vui lòng nhập lại!");
                                 }
                             }catch (NumberFormatException e){
-                                System.out.println("Lựa chọn của bạn không hợp lệ vui lòng chọn lại!");
+                                System.out.println("Lựa chọn của bạn không hợp lệ !");
                             }
                         }
                         break;
@@ -103,7 +101,8 @@ public class StudentController {
                     default:
                         System.out.println("Lựa chọn của bạn không phù hợp");
                 }
-            }catch (NumberFormatException | IOException e){
+            }catch (NumberFormatException e){
+                e.printStackTrace();
                 System.out.println("Lựa chọn của bạn không hợp lệ vui lòng chọn lại!");
             }
         }

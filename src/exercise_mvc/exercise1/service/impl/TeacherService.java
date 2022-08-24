@@ -5,25 +5,31 @@ import exercise_mvc.exercise1.service.ITeacherService;
 import exercise_mvc.exercise1.service.exception.CheckPointException;
 import exercise_mvc.exercise1.service.exception.GenderException;
 import exercise_mvc.exercise1.service.exception.NameException;
+import exercise_mvc.exercise1.service.read_write.readFile;
+import exercise_mvc.exercise1.service.read_write.writeFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TeacherService implements ITeacherService {
     private static Scanner scanner = new Scanner(System.in);
-    private List<Teacher> teachers = new ArrayList<>();
-
+    private List<Teacher> teachers;
+    private static final String PATH_FILE = "src\\exercise_mvc\\exercise1\\data\\fileTeacher.txt";
 
     @Override
-    public void insetTeacher() {
+    public void insetTeacher() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         Teacher teacher = this.infoTeachr();
         teachers.add(teacher);
         System.out.println("Thêm giảng viên thành công!");
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
     @Override
-    public void deleTeacherService() {
+    public void deleTeacherService() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         Teacher teacher = this.findTeacher();
         if (teacher == null) {
             System.out.println("Không tìm thấy đối tượng để xoá");
@@ -40,14 +46,16 @@ public class TeacherService implements ITeacherService {
     }
 
     @Override
-    public void showListTeacher() {
+    public void showListTeacher() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
     }
 
     @Override
-    public void editTeacherService() {
+    public void editTeacherService() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         Teacher teacher = this.findTeacher();
         if (teacher == null) {
             System.out.println("Không tìm thấy đối tượng chỉnh sửa");
@@ -62,10 +70,12 @@ public class TeacherService implements ITeacherService {
             teachers.get(findTeacher).setSpecialize(teacher1.getSpecialize());
             System.out.println("Chỉnh sửa thành công");
         }
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
     @Override
-    public void idTeacherService() {
+    public void idTeacherService() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         Teacher teacher = this.findTeacher();
         if (teacher == null) {
             System.out.println("Không tìm thấy id trong danh sách");
@@ -73,15 +83,17 @@ public class TeacherService implements ITeacherService {
             System.out.println("Thông tin giảng viên cần tìm ");
             System.out.println(teacher);
         }
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
     @Override
-    public void nameTeacherService() {
+    public void nameTeacherService() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         System.out.print("Mời bạn nhập vào tên giảng viên: ");
         String name = scanner.nextLine();
         int count = 0;
         for (int i = 0; i < teachers.size(); i++) {
-            if (teachers.get(i).getName().contains(name)) {
+            if (teachers.get(i).getName().toLowerCase().contains(name.toLowerCase())) {
                 System.out.println(teachers.get(i));
                 count++;
             }
@@ -89,10 +101,12 @@ public class TeacherService implements ITeacherService {
         if (count == 0) {
             System.out.println("Không có tên trong danh sách!");
         }
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
     @Override
-    public void sortNameTeacher() {
+    public void sortNameTeacher() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         if (teachers.size() <= 0) {
             System.out.println("Hiện không có danh sách để sắp xếp!");
             return;
@@ -110,10 +124,12 @@ public class TeacherService implements ITeacherService {
             }
         }
         System.out.println("Sắp xếp thành công!");
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
     @Override
-    public void sortIDTeacher() {
+    public void sortIDTeacher() throws IOException {
+        teachers = readFile.readTeacherFile(PATH_FILE);
         if (teachers.size() <= 0) {
             System.out.println("Hiện không có danh sách để sắp xếp!");
             return;
@@ -131,6 +147,7 @@ public class TeacherService implements ITeacherService {
             }
         }
         System.out.println("Sắp xếp thành công!");
+        writeFile.wriTeachertFile(PATH_FILE,teachers);
     }
 
 

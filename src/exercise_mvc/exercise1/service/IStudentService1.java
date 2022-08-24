@@ -6,17 +6,17 @@ public interface IStudentService1 {
 
     void insetStudent() throws IOException;
 
-    void deleStudent();
+    void deleStudent() throws IOException;
 
     void showListStudent() throws IOException;
 
-    void editStudent();
+    void editStudent() throws IOException;
 
-    void idStundent();
+    void idStundent() throws IOException;
 
-    void nameStudent();
+    void nameStudent() throws IOException;
 
-    void sortNameStudent();
+    void sortNameStudent() throws IOException;
 
-    void sortPointStudent();
+    void sortPointStudent() throws IOException;
 }

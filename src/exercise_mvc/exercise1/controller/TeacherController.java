@@ -3,6 +3,7 @@ package exercise_mvc.exercise1.controller;
 import exercise_mvc.exercise1.service.ITeacherService;
 import exercise_mvc.exercise1.service.impl.TeacherService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TeacherController {
@@ -67,9 +68,9 @@ public class TeacherController {
                         while (true) {
                             try {
                                 System.out.println(
-                                        "-----------------Tìm kiếm--------------\n" +
-                                                "1.Tìm kiếm bằng tên.\n" +
-                                                "2.Tìm kiếm bằng id.\n" +
+                                        "-----------------Sắp xếp--------------\n" +
+                                                "1.Sắp xếp bằng tên.\n" +
+                                                "2.Sắp xếp bằng id.\n" +
                                                 "3.Quay lại.");
                                 int choice;
                                 System.out.print("Chọn (1->3): ");
@@ -100,7 +101,7 @@ public class TeacherController {
                     default:
                         System.out.println("Lựa chọn của bạn không phù hợp ");
                 }
-            } catch (NumberFormatException e) {
+            } catch (NumberFormatException | IOException e) {
                 System.out.println("Chức năng bạn chọn không hợp lệ , vui lòng bạn chọn lại!");
             }
         }

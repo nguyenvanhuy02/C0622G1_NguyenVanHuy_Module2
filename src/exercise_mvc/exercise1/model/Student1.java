@@ -41,8 +41,6 @@ public class Student1 extends Person {
 
     @Override
     public String toString() {
-        return super.toString() + "-" +
-                "Lớp: " + nameClass + "-" +
-                "Điểm: " + point ;
+        return String.format("%s,%s,%s",super.toString(),nameClass,point) ;
     }
 }

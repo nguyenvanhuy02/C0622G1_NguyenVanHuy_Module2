@@ -1,19 +1,21 @@
 package exercise_mvc.exercise1.service;
 
+import java.io.IOException;
+
 public interface ITeacherService {
-    void insetTeacher();
+    void insetTeacher() throws IOException;
 
-    void deleTeacherService();
+    void deleTeacherService() throws IOException;
 
-    void showListTeacher();
+    void showListTeacher() throws IOException;
 
-    void editTeacherService();
+    void editTeacherService() throws IOException;
 
-    void idTeacherService();
+    void idTeacherService() throws IOException;
 
-    void nameTeacherService();
+    void nameTeacherService() throws IOException;
 
-    void sortNameTeacher();
+    void sortNameTeacher() throws IOException;
 
-    void sortIDTeacher();
+    void sortIDTeacher() throws IOException;
 }

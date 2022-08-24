@@ -29,8 +29,9 @@ public class readFile {
 
         String[] info;
         for (String line : strings){
-            info = line.split("-");
-            student1s.add(new Student1(Integer.parseInt(info[0]),info[1],info[2],info[3],info[4],Double.parseDouble(info[5])));
+            info = line.split(",");
+            student1s.add(new Student1(Integer.parseInt(info[0]),
+                    info[1],info[2],info[3],info[4],Double.parseDouble(info[5])));
         }
         return student1s;
     }
@@ -41,7 +42,7 @@ public class readFile {
 
         String[] info;
         for (String line : strings){
-            info = line.split("-");
+            info = line.split(",");
             teachers.add(new Teacher(Integer.parseInt(info[0]),info[1],info[2],info[3],info[4]));
         }
         return teachers;

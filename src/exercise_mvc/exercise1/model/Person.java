@@ -50,8 +50,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "ID: " + id + "-" +
-                "Học Và tên: " + name + "-" +
-                "Ngày Tháng Năm: " + dateOfBirth ;
+        return String.format("%s,%s,%s,%s", id, name, dateOfBirth, gender);
     }
 }

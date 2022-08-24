@@ -6,6 +6,7 @@ import exercise_mvc.exercise1.service.impl.StudentService1;
 import exercise_mvc.exercise1.service.impl.TeacherService;
 
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ManagerController {
@@ -16,7 +17,7 @@ public class ManagerController {
     private static final TeacherController teacher = new TeacherController();
     private static final StudentController studen = new StudentController();
 
-    public void manuManager() {
+    public void manuManager() throws IOException {
         while (true) {
             int choice = 0;
             try {
