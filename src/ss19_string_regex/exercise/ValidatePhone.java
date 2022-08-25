@@ -11,7 +11,7 @@ public class ValidatePhone {
             try {
                 System.out.print("Vui lòng nhập số điện thoại (xx)-(0xxxxxxxxx): ");
                 String phone = scanner.nextLine();
-                if (!(Pattern.compile(regex).matcher(phone).find())){
+                if (!(phone.matches(regex))){
                     throw new CheckException("Số điện thoại bạn nhập sai vui lòng nhập lại!");
                 }else {
                     System.out.println("Số điện thoại hợp lệ!");

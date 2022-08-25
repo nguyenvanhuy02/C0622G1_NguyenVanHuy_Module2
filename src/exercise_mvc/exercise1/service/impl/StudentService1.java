@@ -193,7 +193,7 @@ public class StudentService1 implements IStudentService1 {
             try {
                 System.out.print("Mời bạn nhập tên: ");
                 name = scanner.nextLine();
-                if (!(Pattern.compile(regexName).matcher(name).find())) {
+                if (!(name.matches(regexName))) {
                     throw new NameException("Tên bạn nhập không hợp lệ vui lòng nhập lại!");
                 }
                 break;
@@ -234,7 +234,7 @@ public class StudentService1 implements IStudentService1 {
             try {
                 System.out.print("Mời bạn nhập tên lớp(A|C)XXXX(G|I)1 - X là số: ");
                 nameClass = scanner.nextLine();
-                if (!(Pattern.compile(regexNamClass).matcher(nameClass).find())){
+                if (!(nameClass.matches(regexNamClass))){
                     throw new NameException("Tên lớp bạn không hợp lệ vui lòng nhập lại!");
                 }
                 break;

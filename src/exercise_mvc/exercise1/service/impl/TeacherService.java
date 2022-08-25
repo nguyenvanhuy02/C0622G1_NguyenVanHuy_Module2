@@ -186,7 +186,7 @@ public class TeacherService implements ITeacherService {
             try {
                 System.out.print("Mời bạn nhập tên: ");
                 name = scanner.nextLine();
-                if (!(Pattern.compile(regexName).matcher(name).find())){
+                if (!(name.matches(regexName))){
                     throw new NameException("Tên bạn nhập không hợp lệ vui lòng nhập lại!");
                 }
                 break;

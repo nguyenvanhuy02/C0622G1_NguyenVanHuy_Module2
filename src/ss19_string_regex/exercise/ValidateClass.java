@@ -11,7 +11,7 @@ public class ValidateClass {
             try {
                 System.out.println("Người dùng nhập tên lớp '(C|A|P)XXXX(G,H,I,K,L,M)' - X là số:");
                 String nameClass = scanner.nextLine();
-                if (!(Pattern.compile(regex).matcher(nameClass).find())) {
+                if (!(nameClass.matches(regex))) {
                     throw new CheckException("Tên lớp của bạn không hợp lệ vui lòng nhập lại!");
                 }else {
                     System.out.println("Tên bạn hợp lệ!");
