@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class TeacherService implements ITeacherService {
     private static Scanner scanner = new Scanner(System.in);
@@ -180,14 +181,13 @@ public class TeacherService implements ITeacherService {
         }
 
         String name;
+        String regexName = "[a-zA-z ]{5,50}";
         while (true) {
             try {
                 System.out.print("Mời bạn nhập tên: ");
                 name = scanner.nextLine();
-                if (name.length() == 0) {
-                    throw new NameException("Họ tên không được để trống!");
-                } else if (name.matches("\\W+")) {
-                    throw new NameException("Họ tên chỉ chứa các chữ cái!");
+                if (!(Pattern.compile(regexName).matcher(name).find())){
+                    throw new NameException("Tên bạn nhập không hợp lệ vui lòng nhập lại!");
                 }
                 break;
             } catch (NameException e) {

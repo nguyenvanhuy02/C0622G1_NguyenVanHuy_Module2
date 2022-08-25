@@ -188,19 +188,13 @@ public class StudentService1 implements IStudentService1 {
 
 
         String name;
+        String regexName = "[a-zA-z ]{5,50}";
         while (true) {
             try {
                 System.out.print("Mời bạn nhập tên: ");
                 name = scanner.nextLine();
-               if (name.matches("\\W+")) {
-                    throw new NameException("Họ và tên không được để trống");
-                }
-                String str;
-                for (int i = 0; i < name.length() ; i++) {
-                    str = "";
-                    if ((str + name.charAt(i)).matches("\\d")){
-                        throw new NameException("Họ và tên không được có số!");
-                    }
+                if (!(Pattern.compile(regexName).matcher(name).find())) {
+                    throw new NameException("Tên bạn nhập không hợp lệ vui lòng nhập lại!");
                 }
                 break;
             } catch (NameException e) {
@@ -211,9 +205,9 @@ public class StudentService1 implements IStudentService1 {
         String dataOfBirth;
         while (true) {
             System.out.print("Mời bạn nhập ngày sinh(dd/MM/yyy): ");
-            String regex = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
+            String regex = "([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]";
             dataOfBirth = scanner.nextLine();
-            if(Pattern.matches(regex, dataOfBirth)) {
+            if (Pattern.matches(regex, dataOfBirth)) {
                 break;
             } else {
                 System.out.println("Nhập sai định dạng vui lòng nhập lại!");
@@ -234,9 +228,20 @@ public class StudentService1 implements IStudentService1 {
                 System.out.println(e.getMessage());
             }
         }
-
-        System.out.print("Mời bạn nhập tên lớp: ");
-        String nameClass = scanner.nextLine();
+        String nameClass;
+        String regexNamClass = "[AC][0-9]{4}[GI][1]";
+        while (true) {
+            try {
+                System.out.print("Mời bạn nhập tên lớp(A|C)XXXX(G|I)1 - X là số: ");
+                nameClass = scanner.nextLine();
+                if (!(Pattern.compile(regexNamClass).matcher(nameClass).find())){
+                    throw new NameException("Tên lớp bạn không hợp lệ vui lòng nhập lại!");
+                }
+                break;
+            }catch (NameException e){
+                System.out.println(e.getMessage());
+            }
+        }
 
         double point;
         while (true) {
