@@ -1,10 +1,13 @@
 package casestudy.controller;
 
+import casestudy.service.IBookingService;
+import casestudy.service.impl.BookingService;
+
 import java.util.Scanner;
 
 public class BookingManagement {
     Scanner scanner = new Scanner(System.in);
-
+    private static final IBookingService booking = new BookingService();
     public void bookingManagement() {
         comeBank:
         while (true) {

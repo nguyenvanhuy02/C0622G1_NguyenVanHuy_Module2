@@ -13,14 +13,15 @@ public class FuramaController {
     public void displayMainMenu() {
         while (true) {
             int choice = 0;
-            System.out.println("Quản lý Danh sách" +
-                    "-------------------------" +
+            System.out.println(
+                    "---------Quản lý Danh sách--------\n" +
                     "1. Quản lý nhân viên\n" +
                     "2. Quản lý khách hàng\n" +
                     "3. Quản lý cơ sở\n" +
                     "4. Quản lý đặt phòng\n" +
                     "5. Quản lý khuyến mãi\n" +
                     "6.Thoát!.");
+            System.out.print("lựa chọn của bạn: ");
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -44,7 +45,5 @@ public class FuramaController {
                     System.out.println("Lựa chọn của bạn không phù hợp vui lòng chọn lại!");
             }
         }
-
-
     }
 }

@@ -1,15 +1,19 @@
 package casestudy.controller;
 
+import casestudy.service.ICustomerService;
+import casestudy.service.impl.CustomerService;
+
 import java.util.Scanner;
 
 public class CustomerManagement {
     Scanner scanner = new Scanner(System.in);
+    private static final ICustomerService customer = new CustomerService();
 
     public void customerManagement() {
         comeBank:
         while (true) {
             int choice;
-            System.out.println("--------Quản lí khách hàng--------" +
+            System.out.println("--------Quản lí khách hàng--------\n" +
                     "1. Hiển thị danh sách khách hàng\n" +
                     "2. Thêm khách hàng mới\n" +
                     "3. Chỉnh sửa khách hàng\n" +
@@ -18,10 +22,13 @@ public class CustomerManagement {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
+                    customer.disPlayCustomerSevice();
                     break;
                 case 2:
+                    customer.addCustomerSevice();
                     break;
                 case 3:
+                    customer.editCustomerSevic();
                     break;
                 case 4:
                     break comeBank;

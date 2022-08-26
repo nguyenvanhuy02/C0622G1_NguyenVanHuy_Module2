@@ -1,10 +1,13 @@
 package casestudy.controller;
 
+import casestudy.service.IFacilityService;
+import casestudy.service.impl.FacilityService;
+
 import java.util.Scanner;
 
 public class FacilityManagement {
     Scanner scanner = new Scanner(System.in);
-
+    private static final IFacilityService facility = new FacilityService();
     public void facilityManagement() {
         comeBank:
         while (true) {
@@ -18,15 +21,17 @@ public class FacilityManagement {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice){
                 case 1:
+                    facility.disPlayFacility();
                     break;
                 case 2:
+                    facility.addFacility();
                     break;
                 case 3:
                     break;
                 case 4:
                     break comeBank;
                 default:
-                    System.out.println("Lựa chọn của bạn không phù hợp vui lòng nhập lại!");
+                    System.err.println("Lựa chọn của bạn không phù hợp vui lòng nhập lại!");
             }
         }
     }

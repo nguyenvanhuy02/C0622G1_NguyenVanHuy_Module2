@@ -1,10 +1,13 @@
 package casestudy.controller;
 
+import casestudy.service.IPromotionService;
+import casestudy.service.impl.PromotionService;
+
 import java.util.Scanner;
 
 public class PromotionManagement {
     Scanner scanner = new Scanner(System.in);
-
+    private static final IPromotionService promotion = new PromotionService();
     public void promotionManagement() {
         comeBank:
         while (true) {

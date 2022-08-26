@@ -23,7 +23,7 @@ public class StudentService1 implements IStudentService1 {
     @Override
     public void insetStudent() throws IOException {
         student1s = readFile.readStudentFile(PATH_FILE);
-        Student1 student = infoStudent();
+        Student1 student = this.infoStudent();
         student1s.add(student);
         System.out.println("Thêm học sinh thành công");
         writeFile.wriStudentFile(PATH_FILE, student1s);
