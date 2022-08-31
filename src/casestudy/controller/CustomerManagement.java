@@ -3,13 +3,14 @@ package casestudy.controller;
 import casestudy.service.ICustomerService;
 import casestudy.service.impl.CustomerService;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CustomerManagement {
     Scanner scanner = new Scanner(System.in);
     private static final ICustomerService customer = new CustomerService();
 
-    public void customerManagement() {
+    public void customerManagement() throws IOException {
         comeBank:
         while (true) {
             int choice;

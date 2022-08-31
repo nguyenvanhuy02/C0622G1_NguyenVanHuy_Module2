@@ -1,5 +1,6 @@
 package casestudy.controller;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FuramaController {
@@ -10,19 +11,24 @@ public class FuramaController {
     private static final BookingManagement booking = new BookingManagement();
     private static final PromotionManagement promotion = new PromotionManagement();
 
-    public void displayMainMenu() {
+    public void displayMainMenu() throws IOException {
         while (true) {
-            int choice = 0;
-            System.out.println(
-                    "---------Quản lý Danh sách--------\n" +
-                    "1. Quản lý nhân viên\n" +
-                    "2. Quản lý khách hàng\n" +
-                    "3. Quản lý cơ sở\n" +
-                    "4. Quản lý đặt phòng\n" +
-                    "5. Quản lý khuyến mãi\n" +
-                    "6.Thoát!.");
-            System.out.print("lựa chọn của bạn: ");
-            choice = Integer.parseInt(scanner.nextLine());
+            int choice;
+            try {
+                System.out.println(
+                        "---------Quản lý Danh sách--------\n" +
+                                "1. Quản lý nhân viên\n" +
+                                "2. Quản lý khách hàng\n" +
+                                "3. Quản lý cơ sở\n" +
+                                "4. Quản lý đặt phòng\n" +
+                                "5. Quản lý khuyến mãi\n" +
+                                "6.Thoát!.");
+                System.out.print("lựa chọn của bạn: ");
+                choice = Integer.parseInt(scanner.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Lựa chọn bạn không hợp lệ vui lòng nhập lại!");
+                continue;
+            }
             switch (choice) {
                 case 1:
                     employee.employeeManagement();

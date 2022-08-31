@@ -12,7 +12,7 @@ public class House extends FacilityFurama {
         this.numberFloors = numberFloors;
     }
 
-    public House(String codeFacility, String serviceName, String usableArea, String rentalCosts, int maxNumberPeople, String lease, String roomStandard, int numberFloors) {
+    public House(String codeFacility, String serviceName, Double usableArea, Double rentalCosts, int maxNumberPeople, String lease, String roomStandard, int numberFloors) {
         super(codeFacility, serviceName, usableArea, rentalCosts, maxNumberPeople, lease);
         this.roomStandard = roomStandard;
         this.numberFloors = numberFloors;
@@ -36,9 +36,6 @@ public class House extends FacilityFurama {
 
     @Override
     public String toString() {
-        return "House{" +
-                "roomStandard='" + roomStandard + '\'' +
-                ", numberFloors=" + numberFloors +
-                '}';
+        return String.format("%s,%s,%s",super.toString(),roomStandard,numberFloors);
     }
 }

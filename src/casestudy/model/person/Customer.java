@@ -1,5 +1,7 @@
 package casestudy.model.person;
 
+import java.time.LocalDate;
+
 public class Customer extends Person {
     private String guest;
     private String address;
@@ -12,7 +14,7 @@ public class Customer extends Person {
         this.address = address;
     }
 
-    public Customer(String code, String name, String dateOfBirth, String gender, int citizenship, int phoneNumber, String email, String guest, String address) {
+    public Customer(String code, String name, String dateOfBirth, String gender, String citizenship, String phoneNumber, String email, String guest, String address) {
         super(code, name, dateOfBirth, gender, citizenship, phoneNumber, email);
         this.guest = guest;
         this.address = address;
@@ -36,6 +38,6 @@ public class Customer extends Person {
 
     @Override
     public String toString() {
-        return String.format("%s,Khách mời: %s,Địa chỉ: %s",super.toString(),guest,address);
+        return String.format("%s,%s,%s",super.toString(),guest,address);
     }
 }

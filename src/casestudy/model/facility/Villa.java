@@ -2,19 +2,19 @@ package casestudy.model.facility;
 
 public class Villa extends FacilityFurama {
     private String roomStandard; // tiêu chuẩn phòng
-    private String swimmingArea; // Diện tích hồ bơi
+    private Double swimmingArea; // Diện tích hồ bơi
     private int numberFloors; // Số tầng
 
     public Villa() {
     }
 
-    public Villa(String roomStandard, String swimmingArea, int numberFloors) {
+    public Villa(String roomStandard, Double swimmingArea, int numberFloors) {
         this.roomStandard = roomStandard;
         this.swimmingArea = swimmingArea;
         this.numberFloors = numberFloors;
     }
 
-    public Villa(String codeFacility, String serviceName, String usableArea, String rentalCosts, int maxNumberPeople, String lease, String roomStandard, String swimmingArea, int numberFloors) {
+    public Villa(String codeFacility, String serviceName, Double usableArea, Double rentalCosts, int maxNumberPeople, String lease, String roomStandard, Double swimmingArea, int numberFloors) {
         super(codeFacility, serviceName, usableArea, rentalCosts, maxNumberPeople, lease);
         this.roomStandard = roomStandard;
         this.swimmingArea = swimmingArea;
@@ -29,11 +29,11 @@ public class Villa extends FacilityFurama {
         this.roomStandard = roomStandard;
     }
 
-    public String getSwimmingArea() {
+    public Double getSwimmingArea() {
         return swimmingArea;
     }
 
-    public void setSwimmingArea(String swimmingArea) {
+    public void setSwimmingArea(Double swimmingArea) {
         this.swimmingArea = swimmingArea;
     }
 
@@ -47,10 +47,6 @@ public class Villa extends FacilityFurama {
 
     @Override
     public String toString() {
-        return "Villa{" +
-                "roomStandard='" + roomStandard + '\'' +
-                ", swimmingArea='" + swimmingArea + '\'' +
-                ", numberFloors=" + numberFloors +
-                '}';
+        return String.format("%s,%s,%s,%s",super.toString(),roomStandard,swimmingArea,numberFloors);
     }
 }

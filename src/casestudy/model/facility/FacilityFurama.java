@@ -3,15 +3,15 @@ package casestudy.model.facility;
 public class FacilityFurama {
     private String codeFacility; // mã dịch vụ
     private String serviceName; // Tên dịch vụ
-    private String usableArea;  // Diện tích sử dụng.
-    private String rentalCosts; // Chi phí thuê.
+    private Double usableArea;  // Diện tích sử dụng.
+    private Double rentalCosts; // Chi phí thuê.
     private int maxNumberPeople; // Số lượng người tối đa
     private String lease;        // Kiểu thuê
 
     public FacilityFurama() {
     }
 
-    public FacilityFurama(String codeFacility, String serviceName, String usableArea, String rentalCosts, int maxNumberPeople, String lease) {
+    public FacilityFurama(String codeFacility, String serviceName, Double usableArea, Double rentalCosts, int maxNumberPeople, String lease) {
         this.codeFacility = codeFacility;
         this.serviceName = serviceName;
         this.usableArea = usableArea;
@@ -36,19 +36,19 @@ public class FacilityFurama {
         this.serviceName = serviceName;
     }
 
-    public String getUsableArea() {
+    public Double getUsableArea() {
         return usableArea;
     }
 
-    public void setUsableArea(String usableArea) {
+    public void setUsableArea(Double usableArea) {
         this.usableArea = usableArea;
     }
 
-    public String getRentalCosts() {
+    public Double getRentalCosts() {
         return rentalCosts;
     }
 
-    public void setRentalCosts(String rentalCosts) {
+    public void setRentalCosts(Double rentalCosts) {
         this.rentalCosts = rentalCosts;
     }
 
@@ -70,12 +70,7 @@ public class FacilityFurama {
 
     @Override
     public String toString() {
-        return "FacilityFurama{" +
-                "serviceName='" + serviceName + '\'' +
-                ", usableArea='" + usableArea + '\'' +
-                ", rentalCosts='" + rentalCosts + '\'' +
-                ", maxNumberPeople=" + maxNumberPeople +
-                ", lease='" + lease + '\'' +
-                '}';
+        return String.format("%s,%s,%s,%s,%s,%s",
+                codeFacility, serviceName, usableArea, rentalCosts, maxNumberPeople, lease);
     }
 }

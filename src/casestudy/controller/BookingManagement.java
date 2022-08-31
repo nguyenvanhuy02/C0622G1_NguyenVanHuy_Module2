@@ -23,8 +23,10 @@ public class BookingManagement {
             choice = Integer.parseInt(scanner.nextLine());
             switch (choice){
                 case 1:
+                    booking.addBooking();
                     break;
                 case 2:
+                    booking.displayBooking();
                     break;
                 case 3:
                     break;

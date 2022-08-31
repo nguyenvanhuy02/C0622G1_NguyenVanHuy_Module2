@@ -1,18 +1,20 @@
 package casestudy.model.person;
 
+import java.time.LocalDate;
+
 public class Person {
     private String code;
     private String name;
     private String dateOfBirth;
     private String gender;
-    private int citizenship;
-    private int phoneNumber;
+    private String citizenship;
+    private String phoneNumber;
     private String email;
 
     public Person() {
     }
 
-    public Person(String code, String name, String dateOfBirth, String gender, int citizenship, int phoneNumber, String email) {
+    public Person(String code, String name, String dateOfBirth, String gender, String citizenship, String phoneNumber, String email) {
         this.code = code;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -42,7 +44,7 @@ public class Person {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth( String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -54,19 +56,19 @@ public class Person {
         this.gender = gender;
     }
 
-    public int getCitizenship() {
+    public String getCitizenship() {
         return citizenship;
     }
 
-    public void setCitizenship(int citizenship) {
+    public void setCitizenship(String citizenship) {
         this.citizenship = citizenship;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -80,7 +82,11 @@ public class Person {
 
     @Override
     public String toString() {
-        return String.format("id: %s, Họ và tên: %s, Ngày sinh: %s,Giới tính: %s,CCCD: %s,Điện thoại: %s,Email: %s"
+        return String.format("%s,%s,%s,%s,%s,%s,%s"
                 ,code,name,dateOfBirth,gender,citizenship,phoneNumber,email);
     }
+//    public String toStringWrite(){
+//        return String.format("ID: %s,Họ và tên: %s,%s,%s,%s,%s,%s"
+//                ,code,name,dateOfBirth,gender,citizenship,phoneNumber,email);
+//    }
 }

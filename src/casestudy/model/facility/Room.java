@@ -10,7 +10,7 @@ public class Room extends FacilityFurama {
         this.freeService = freeService;
     }
 
-    public Room(String codeFacility, String serviceName, String usableArea, String rentalCosts, int maxNumberPeople, String lease, String freeService) {
+    public Room(String codeFacility, String serviceName, Double usableArea, Double rentalCosts, int maxNumberPeople, String lease, String freeService) {
         super(codeFacility, serviceName, usableArea, rentalCosts, maxNumberPeople, lease);
         this.freeService = freeService;
     }
@@ -25,8 +25,6 @@ public class Room extends FacilityFurama {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "freeService='" + freeService + '\'' +
-                '}';
+        return String.format("%s,%s",super.toString(),freeService);
     }
 }

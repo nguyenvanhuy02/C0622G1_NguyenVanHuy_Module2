@@ -1,11 +1,13 @@
 package casestudy.service;
 
+import java.io.IOException;
+
 public interface ICustomerService {
 
-    void disPlayCustomerSevice();
+    void disPlayCustomerSevice() throws IOException;
 
-    void addCustomerSevice();
+    void addCustomerSevice() throws IOException;
 
-    void editCustomerSevic();
+    void editCustomerSevic() throws IOException;
 
 }
